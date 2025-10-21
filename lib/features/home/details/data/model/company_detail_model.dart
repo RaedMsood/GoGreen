@@ -1,4 +1,4 @@
-import 'package:gogreen/features/home/offers/data/model/offer_model.dart';
+import 'package:gogreen/features/home/main/data/model/offer_model.dart';
 import 'category_model.dart';
 import 'product_pagenation_model.dart';
 import 'section_model.dart';
@@ -42,7 +42,7 @@ class CompanyDetailModel {
     return CompanyDetailModel(
       id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
-      address: json['address'] ??"",
+      address: json['address'] ?? "",
       rates: json['rates'] ?? 0.0,
       image: json['image'] as String?,
       offers: (json['offers'] as List<dynamic>?)
@@ -78,13 +78,6 @@ class CompanyDetailModel {
     };
   }
 
-  List<CompanyDetailModel> fromJsonList(List<dynamic> json) {
-    return json
-        .map((e) => CompanyDetailModel.fromJson(e as Map<String, dynamic>))
-        .toList();
-  }
-
-  //copy
   CompanyDetailModel copyWith({
     int? id,
     String? name,

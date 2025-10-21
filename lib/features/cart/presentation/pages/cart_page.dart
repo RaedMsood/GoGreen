@@ -14,7 +14,7 @@ import 'package:gogreen/features/services/auth/auth.dart';
 import 'package:gogreen/features/user/presentation/pages/login_page.dart';
 
 class CartPage extends ConsumerWidget {
-  const CartPage({Key? key}) : super(key: key);
+  const CartPage({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
@@ -44,7 +44,7 @@ class CartPage extends ConsumerWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
-                child: AutoSizeTextWidget(
+                child: const AutoSizeTextWidget(
                   text: "Products",
                 ),
               ),

@@ -113,6 +113,7 @@ class RegisterController extends StateNotifier<GenerateDataState<AuthModel>> {
       onSuccess();
       state = state.success(data.data!);
     } else {
+
       showFlashBarError(
         message: "${data.message} ${data.error!.desc.toString()}",
         context: context,
@@ -125,25 +126,31 @@ class RegisterController extends StateNotifier<GenerateDataState<AuthModel>> {
   Future<void> sendOTP(
     BuildContext context, {
     required Function onSuccess,
-  }) async {
+        required Function resendOTP,
+
+      }) async {
     state = state.loading();
     final email = personalForm.group.control('email').value;
 
     final data = await _controller.sendOTP(
       email: email,
     );
+    Auth().setEmail(email);
 
     if (data is DataSuccess) {
-      Auth().setEmail(email);
       onSuccess();
       state = state.success(AuthModel.empty());
     } else {
-      showFlashBarError(
-        message: "${data.message} ${data.error!.desc.toString()}",
-        context: context,
-      );
-
+      if(data.message=="User is not activated. Please go check OTP."){
+        resendOTP();
+      }else{
+        showFlashBarError(
+          message: "${data.message} ${data.error!.desc.toString()}",
+          context: context,
+        );
+      }
       state = state.failure(data.message, error: data.error);
+
     }
   }
 }
@@ -192,6 +199,7 @@ final resendOtpProvider = StateNotifierProvider.autoDispose<ResendOtpController,
     return ResendOtpController();
   },
 );
+
 
 class ResendOtpController extends StateNotifier<GenerateDataState<bool>> {
   ResendOtpController() : super(GenerateDataState<bool>.initial(false));

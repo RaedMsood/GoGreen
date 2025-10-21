@@ -15,7 +15,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class RegisterStorePage extends ConsumerStatefulWidget {
-  const RegisterStorePage({Key? key}) : super(key: key);
+  const RegisterStorePage({super.key});
 
   @override
   ConsumerState createState() => _RegisterStorePageState();

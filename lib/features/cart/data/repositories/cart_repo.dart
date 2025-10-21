@@ -2,7 +2,7 @@ import 'package:gogreen/core/network/errors/error.model.wings.dart';
 import 'package:gogreen/core/network/remote.wings.dart';
 import 'package:gogreen/features/cart/data/data_sourse/cart_hive_local.dart';
 import 'package:gogreen/features/cart/data/data_sourse/company_cart_hive_local.dart';
-import 'package:gogreen/features/cart/data/model/cart.model.dart';
+import 'package:gogreen/features/cart/data/model/cart_model.dart';
 import 'package:gogreen/features/cart/data/model/cart_product_model.dart';
 import 'package:gogreen/features/cart/data/model/confirm_order_data_model.dart';
 import 'package:gogreen/features/cart/data/model/send_order_model.dart';

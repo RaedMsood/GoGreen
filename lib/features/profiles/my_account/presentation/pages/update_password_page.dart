@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gogreen/core/helpers/flash_bar_helper.dart';
+import 'package:gogreen/core/helpers/navigateTo.dart';
 import 'package:gogreen/core/states/ui.state.dart';
 import 'package:gogreen/core/states/view.state.dart';
 import 'package:gogreen/core/widget/appbar_widget.dart';
+import 'package:gogreen/core/widget/bottomNavbar/bottom_navigation_bar_widget.dart';
 import 'package:gogreen/core/widget/buttons/default_button.dart';
 import 'package:gogreen/core/widget/inputs/password_input.dart';
 import 'package:gogreen/features/profiles/my_account/presentation/riverpod/my_account_riverpod.dart';
@@ -60,6 +63,14 @@ class UpdatePasswordPage extends ConsumerWidget {
                               .read(updateMyAccountProvider.notifier)
                               .changePassword(
                                 context,
+                            onSuccess: (){
+                              ref.read(activeIndexProvider.notifier).state = 0;
+                              navigateAndFinish(context, const BottomNavigationBarWidget());
+                              showFlashBarSuccess(
+                                message: 'Password changed successfully , Please go to sign in ',
+                                context: context,
+                              );
+                            }
                               );
                         },
                       ),

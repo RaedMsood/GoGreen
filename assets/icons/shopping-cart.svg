@@ -1,9 +1,0 @@
-<svg id="shopping-cart" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
-  <g id="shopping-cart-2" data-name="shopping-cart">
-    <path id="Vector" d="M0,0H2.027A2.165,2.165,0,0,1,4.171,2.348L3.2,14.043A3.272,3.272,0,0,0,6.454,17.6H18.861a3.362,3.362,0,0,0,3.274-3.065l.629-8.806A3.245,3.245,0,0,0,19.49,2.2H4.45" transform="translate(2.348 2.348)" fill="none" stroke="#f9fcfe" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-    <path id="Vector-2" data-name="Vector" d="M2.935,1.468A1.468,1.468,0,1,1,1.468,0,1.468,1.468,0,0,1,2.935,1.468Z" transform="translate(17.487 22.716)" fill="none" stroke="#f9fcfe" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" opacity="0.4"/>
-    <path id="Vector-3" data-name="Vector" d="M2.935,1.468A1.468,1.468,0,1,1,1.468,0,1.468,1.468,0,0,1,2.935,1.468Z" transform="translate(8.161 22.716)" fill="none" stroke="#f9fcfe" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" opacity="0.4"/>
-    <path id="Vector-4" data-name="Vector" d="M0,0H14.09" transform="translate(10.387 9.333)" fill="none" stroke="#f9fcfe" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" opacity="0.4"/>
-    <path id="Vector-5" data-name="Vector" d="M0,0H28V28H0Z" fill="none" opacity="0"/>
-  </g>
-</svg>

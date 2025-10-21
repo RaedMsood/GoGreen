@@ -15,16 +15,11 @@ class ViewCartButtonForCompanyDetailsWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     var state = ref.watch(cartProvider);
-    // var index = state.data.companyId.indexWhere(
-    //       (element) => element. == companyId,
-    // );
-
     return state.company!.id != companyId
         ? const SizedBox()
         : Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 16.h),
+            padding: EdgeInsets.only(left: 14.w, right: 14.w, top: 11.h),
             decoration: BoxDecoration(
               color: AppColors.whiteColor,
               borderRadius: BorderRadius.only(

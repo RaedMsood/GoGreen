@@ -13,6 +13,7 @@ class AppIcons {
 
   static const String newNotification = '${_iconsPath}new_notification.svg';
   static const String notification = '${_iconsPath}notification.svg';
+
   static const String arrowDown = '${_iconsPath}arrow_down.svg';
   static const String arrowForward = '${_iconsPath}arrow_forward.svg';
 
@@ -20,19 +21,18 @@ class AppIcons {
   static const String homeSearch = '${_iconsPath}home_search.svg';
 
   static const String zoom = '${_iconsPath}zoom.svg';
-  static const String starOutline = '${_iconsPath}star-outline.svg';
+
+  static const String comment = '${_iconsPath}comment.svg';
+  static const String addComment = '${_iconsPath}add_comment.svg';
 
   static const String locationHome = '${_iconsPath}location-home.svg';
   static const String mapLocation = '${_iconsPath}map_location.svg';
   static const String address = '${_iconsPath}address.svg';
 
-  static const String user = '${_iconsPath}user.svg';
   static const String trash = '${_iconsPath}trash.svg';
-
   static const String key = '${_iconsPath}key.svg';
   static const String plus = '${_iconsPath}plus.svg';
   static const String minus = '${_iconsPath}minus.svg';
-
   static const String close = '${_iconsPath}close.svg';
 
   /// Contact

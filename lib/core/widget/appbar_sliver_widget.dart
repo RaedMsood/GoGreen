@@ -9,7 +9,6 @@ SliverAppBar appBarSliverWidget({
   required String title,
   required Widget child,
   required double expandedHeight,
-  bool actions=false,
 }) {
   return SliverAppBar(
     automaticallyImplyLeading: false,
@@ -28,12 +27,7 @@ SliverAppBar appBarSliverWidget({
       minFontSize: 15,
     ),
     leading: const BackButtonWidget(),
-    actions:actions==true? [
-      SizedBox(
-        height: 20.h,
-        width: 55.w,
-      ),
-    ]:[],
+
     flexibleSpace: Container(
 
       padding: EdgeInsets.zero,

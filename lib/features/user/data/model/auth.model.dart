@@ -23,6 +23,15 @@ class AuthModel {
     };
   }
 
+  AuthModel copyWith({
+     UserModel? user,
+  }) {
+    return AuthModel(
+      token: token,
+      user: user??this.user,
+    );
+  }
+
   factory AuthModel.empty() => AuthModel(
         token: '',
         user: UserModel.empty(),

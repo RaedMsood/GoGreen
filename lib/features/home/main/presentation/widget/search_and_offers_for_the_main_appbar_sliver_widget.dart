@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gogreen/core/constants/app_icons.dart';
 import 'package:gogreen/core/helpers/navigateTo.dart';
-import 'package:gogreen/features/home/offers/presentation/widget/home_offers_widget.dart';
+import 'package:gogreen/features/home/main/presentation/widget/home_offers_widget.dart';
 import 'package:gogreen/features/home/main/presentation/page/search_page.dart';
 import 'search_box_widget.dart';
 import 'home_sliver_appbar_widget.dart';

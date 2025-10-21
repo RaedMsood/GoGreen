@@ -4,14 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gogreen/core/helpers/flash_bar_helper.dart';
 import 'package:gogreen/core/states/error.state.dart';
 import 'package:gogreen/core/states/ui.state.dart';
+import 'package:gogreen/core/states/view.state.dart';
 import 'package:gogreen/core/widget/appbar_sliver_persistent_header_widget.dart';
+import 'package:gogreen/core/widget/appbar_widget.dart';
 import 'package:gogreen/features/cart/data/model/cart_product_model.dart';
 import 'package:gogreen/features/cart/presentation/riverpod/cart.riverpod.dart';
 import 'package:gogreen/features/home/details/presentation/riverpod/company_detail_riverpod.dart';
 import 'package:gogreen/features/home/details/presentation/widgets/add_to_cart_bottom_bar_widget.dart';
 import 'package:gogreen/features/home/details/presentation/widgets/design_for_product_detail_info_widget.dart';
 import 'package:gogreen/features/home/details/presentation/widgets/shimmer_product_detail_info_widget.dart';
-import 'package:gogreen/features/home/offers/presentation/widget/product_detail_offers_widget.dart';
+import 'package:gogreen/features/home/details/presentation/widgets/product_detail_offers_widget.dart';
 
 class ProductDetailsPage extends ConsumerWidget {
   final int productId;
@@ -28,24 +30,31 @@ class ProductDetailsPage extends ConsumerWidget {
     var controller = ref.watch(productDetailProvider(productId));
 
     return Scaffold(
+      appBar: controller.viewState == ViewState.failure
+          ? AppBarWidget(
+              title: companyName.toString(),
+              titleFontSize: 15.sp,
+            )
+          : null,
       body: CustomScrollView(
         slivers: [
-          SliverPersistentHeader(
-            pinned: true,
-            floating: false,
-            delegate: AppbarSliverPersistentHeaderWidget(
-              title: companyName.toString(),
-              expandedHeight: 280.h,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 14.h),
-                child: ProductDetailOffersWidget(id: productId),
+          if (controller.viewState != ViewState.failure)
+            SliverPersistentHeader(
+              pinned: true,
+              floating: false,
+              delegate: AppbarSliverPersistentHeaderWidget(
+                title: companyName.toString(),
+                expandedHeight: 280.h,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 14.h),
+                  child: ProductDetailOffersWidget(id: productId),
+                ),
               ),
             ),
-          ),
           SliverToBoxAdapter(
             child: UIState(
               state: controller.viewState,
-              loadingState: ShimmerProductDetailInfoWidget(),
+              loadingState: const ShimmerProductDetailInfoWidget(),
               errorState: ErrorState.container(
                 error: controller.errorModel,
               ),

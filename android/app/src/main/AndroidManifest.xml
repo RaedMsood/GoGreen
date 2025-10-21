@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.gogreen">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.gogreen">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -17,6 +18,7 @@
             android:taskAffinity=""
             android:theme="@style/LaunchTheme"
             android:windowSoftInputMode="adjustResize">
+
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
@@ -37,6 +39,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAdR4i_FaGlxZM0_rju7BNQEziPG1GZ0ME" />
+        <meta-data
+            android:name="com.huawei.hms.client.appid"
+            android:value="appid=AIzaSyAdR4i_FaGlxZM0_rju7BNQEziPG1GZ0ME" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

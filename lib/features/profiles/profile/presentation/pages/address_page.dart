@@ -43,6 +43,8 @@ class AddressPage extends ConsumerWidget {
               ),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
                 if (controller.data.isEmpty)
                   ErrorState.container(
@@ -64,8 +66,8 @@ class AddressPage extends ConsumerWidget {
       ),
       bottomNavigationBar: UIState(
         state: controller.viewState,
-        loadingState: const SizedBox(),
-        errorState: const SizedBox(),
+        loadingState: const SizedBox.shrink(),
+        errorState: const SizedBox.shrink(),
         child: BottomNavigationBarDesignWidget(
           child: DefaultButtonWidget(
             text: "Add New Address",

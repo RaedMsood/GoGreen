@@ -7,19 +7,25 @@ import 'package:gogreen/core/theme/app_colors.dart';
 import 'package:gogreen/core/widget/appbar_sliver_widget.dart';
 import 'package:gogreen/core/widget/inputs/text_form_field.dart';
 import 'package:gogreen/features/home/details/presentation/riverpod/company_detail_riverpod.dart';
-import 'package:gogreen/features/home/offers/presentation/widget/company_details_offers_widget.dart';
+import 'package:gogreen/features/home/details/presentation/widgets/company_details_offers_widget.dart';
+
+import 'appbar_company_details.dart';
 
 class SearchForAProductAndViewOffersForTheCompanyDetailsAppBarSliverWidget
     extends SliverPersistentHeaderDelegate {
   final int id;
-  final String title;
+  final String companyImage;
+  final String companyName;
+  final String companyAddress;
   late double expandedHeight;
   final CompanyDetailController controller;
   final ScrollController scrollController;
 
   SearchForAProductAndViewOffersForTheCompanyDetailsAppBarSliverWidget({
     required this.id,
-    required this.title,
+    required this.companyImage,
+    required this.companyName,
+    required this.companyAddress,
     required this.expandedHeight,
     required this.controller,
     required this.scrollController,
@@ -46,10 +52,15 @@ class SearchForAProductAndViewOffersForTheCompanyDetailsAppBarSliverWidget
         return CustomScrollView(
           physics: const NeverScrollableScrollPhysics(),
           slivers: [
-            appBarSliverWidget(
-              title: title,
+            appBarCompanyDetailsWidget(
+              title: companyName,
+              context: context,
               expandedHeight: expandedHeight,
-              actions:hide > .6? true:false,
+               actions:hide > .6? true:false,
+              companyId: id,
+              companyImage: companyImage,
+              companyName: companyName,
+              companyAddress: companyAddress,
               child: Stack(
                 fit: StackFit.expand,
                 clipBehavior: Clip.none,
@@ -58,12 +69,13 @@ class SearchForAProductAndViewOffersForTheCompanyDetailsAppBarSliverWidget
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AnimatedContainer(
+
                         padding: MediaQuery.of(context).viewPadding.copyWith(
-                              bottom: hide > .6 ? 0.h : 12.h,
-                            ),
+                          bottom: hide > .6 ? 0.h : 12.h,
+                        ),
                         margin: EdgeInsets.only(
-                          left: hide > .52 ? 300.w : 14.w,
-                          right: 14.w,
+                          left: hide > .52 ? 258.w : 14.w,
+                          right:hide > .52 ?60.w: 14.w,
                           top: hide > .6 ? 14.5.h : 70.h,
                         ),
                         alignment: hide > .6

@@ -9,21 +9,24 @@ import 'package:gogreen/core/widget/bottomNavbar/bottom_navigation_bar_widget.da
 import 'package:gogreen/core/widget/buttons/default_button.dart';
 import 'package:gogreen/core/helpers/navigateTo.dart';
 import 'package:gogreen/features/address/presentation/riverpod/address_riverpod.dart';
-import 'package:gogreen/features/my_orders/orders/presentation/riverpod/order_riverpod.dart';
+import 'package:gogreen/features/profiles/my_account/presentation/riverpod/my_account_riverpod.dart';
 import 'package:gogreen/features/services/auth/auth.dart';
 import 'package:gogreen/features/user/presentation/riverpod/riverpod.dart';
 import 'package:gogreen/features/user/presentation/widgets/appbar_user_widget.dart';
 import 'package:gogreen/features/user/presentation/widgets/general_design_of_user_pages_widget.dart';
 import 'package:gogreen/features/user/presentation/widgets/resend_code_widget.dart';
 import 'package:gogreen/features/user/presentation/widgets/verify_pinput_widget.dart';
+import '../../../orders/presentation/riverpod/order_riverpod.dart';
 import 'reset_password_page.dart';
 
 class VerifyPage extends ConsumerWidget {
   final bool? verifyCodeWhenYouForgetYourPass;
+  final bool? updateEmail;
 
   VerifyPage({
     super.key,
     this.verifyCodeWhenYouForgetYourPass = false,
+    this.updateEmail = false,
   });
 
   final formKey = GlobalKey<FormState>();
@@ -60,7 +63,7 @@ class VerifyPage extends ConsumerWidget {
               40.h.verticalSpace,
 
               /// Class Resend Code Widget
-              const ResendCodeWidget(),
+               const ResendCodeWidget(),
               28.h.verticalSpace,
               DefaultButtonWidget(
                 text: "Verify",
@@ -77,29 +80,51 @@ class VerifyPage extends ConsumerWidget {
                     ref.read(checkOtpProvider.notifier).checkOtp(
                           context,
                           otp: verifyController.text,
-                          onSuccess: verifyCodeWhenYouForgetYourPass == true
+                          onSuccess: updateEmail == true
                               ? () {
-                                  navigateReplacement(
-                                      context, const ResetPasswordPage());
+                            ref
+                                .read(updateMyAccountProvider.notifier)
+                                .updateMyAccount(
+                              context,
+                              lat: mapController.location.latitude,
+                              lng: mapController.location.longitude,
+                                onSuccess: (){
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                                  showFlashBarSuccess(
+                                    message: 'Updated Successfully',
+                                    context: context,
+                                  );
                                 }
-                              : () {
-                                  ref.read(registerProvider.notifier).register(
-                                    context,
-                                    lat: mapController.location.latitude,
-                                    lng: mapController.location.longitude,
-                                    onSuccess: () {
-                                      navigateAndFinish(context,
-                                          const BottomNavigationBarWidget());
+                            );
+                          }
+                              : verifyCodeWhenYouForgetYourPass == true
+                                  ? () {
+                                      navigateReplacement(
+                                          context, const ResetPasswordPage());
+                                    }
+                                  : () {
                                       ref
-                                          .read(getAllOrdersProvider.notifier)
-                                          .getData();
-                                      showFlashBarSuccess(
-                                        message: "Account created successfully",
-                                        context: context,
+                                          .read(registerProvider.notifier)
+                                          .register(
+                                        context,
+                                        lat: mapController.location.latitude,
+                                        lng: mapController.location.longitude,
+                                        onSuccess: () {
+                                          navigateAndFinish(context,
+                                              const BottomNavigationBarWidget());
+                                          ref
+                                              .read(
+                                                  getAllOrdersProvider.notifier)
+                                              .getData();
+                                          showFlashBarSuccess(
+                                            message:
+                                                "Account created successfully",
+                                            context: context,
+                                          );
+                                        },
                                       );
                                     },
-                                  );
-                                },
                         );
                   }
                 },

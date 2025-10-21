@@ -40,7 +40,9 @@ class CompanyCardWidget extends ConsumerWidget {
             context,
             CompanyDetailsPage(
               id: id,
+              companyImage: image,
               companyName: name,
+              companyAddress: address,
             ));
       },
       child: Container(

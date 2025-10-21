@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RatingBarWidget extends StatelessWidget {
   final double evaluation;
-  int? length;
-  double? itemSize;
-  Color? unratedColor;
-  Color? labeledColor;
+  final int? length;
+  final double? itemSize;
+  final Color? unratedColor;
+  final Color? labeledColor;
 
-    RatingBarWidget({
+   const RatingBarWidget({
     super.key,
     required this.evaluation,
     this.length,

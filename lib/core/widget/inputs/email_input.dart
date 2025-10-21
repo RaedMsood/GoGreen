@@ -9,8 +9,7 @@ import 'base_input.dart';
 
 class EmailInputWidget extends StatelessWidget {
   const EmailInputWidget(
-      {Key? key, required this.formControlName, required this.hintText, this.onSubmitted})
-      : super(key: key);
+      {super.key, required this.formControlName, required this.hintText, this.onSubmitted});
   final String formControlName;
   final String hintText;
 

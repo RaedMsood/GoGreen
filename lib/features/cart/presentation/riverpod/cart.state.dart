@@ -1,6 +1,6 @@
 import 'package:gogreen/core/network/errors/error.model.wings.dart';
 import 'package:gogreen/core/states/view.state.dart';
-import 'package:gogreen/features/cart/data/model/cart.model.dart';
+import 'package:gogreen/features/cart/data/model/cart_model.dart';
 import 'package:gogreen/features/cart/data/model/cart_product_model.dart';
 import 'package:gogreen/features/home/main/data/model/company_model.dart';
 

@@ -39,9 +39,9 @@ class CategoriesWidget extends SliverPersistentHeaderDelegate {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 2.h.verticalSpace,
-                Padding(
+                  Padding(
                   padding: EdgeInsets.all(14.sp),
-                  child: AutoSizeTextWidget(
+                  child: const AutoSizeTextWidget(
                     text: "Categories",
                   ),
                 ),

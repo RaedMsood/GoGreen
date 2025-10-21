@@ -1,12 +1,13 @@
 import 'package:gogreen/core/network/errors/error.model.wings.dart';
 import 'package:gogreen/core/network/remote.wings.dart';
 import 'package:gogreen/core/states/paginatedData.state.dart';
+import 'package:gogreen/features/home/main/data/model/offer_model.dart';
 import '../model/company_model.dart';
 
 class CompanyRepository {
   Future<DataState<PaginationModel<CompanyModel>>> getCompanies({
     int page = 1,
-    int limit = 20,
+    int limit = 3,
     String filter = 'all',
     String search = '',
   }) async {
@@ -26,8 +27,6 @@ class CompanyRepository {
           PaginationModel<CompanyModel>.fromJson(response.data, (comp) {
             return CompanyModel.fromJson(comp);
           }),
-
-          // CompanyModel.fromJsonList(response.data['data']),
         );
       },
       onError: (response, code) {
@@ -43,5 +42,28 @@ class CompanyRepository {
     );
   }
 
-
+  Future<DataState<List<OfferModel>>> getHomeOffers() async {
+    return await WingsRemoteService().send(
+      request: WingsRequest(
+        url: AppURL.offers,
+      ),
+      method: WingsRemoteMethod.get,
+      onSuccess: (response, code) {
+        var offers = OfferModel.empty().fromJsonList(
+          response.data,
+        );
+        return DataSuccess(offers);
+      },
+      onError: (response, code) {
+        return DataError<List<OfferModel>>(
+          message: response.message,
+          code: response.code,
+          error: ErrorModel.fromCode(
+            response.code,
+            response.statusCode,
+          ),
+        );
+      },
+    );
+  }
 }

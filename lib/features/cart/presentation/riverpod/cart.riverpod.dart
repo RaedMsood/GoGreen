@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gogreen/core/helpers/flash_bar_helper.dart';
 import 'package:gogreen/core/states/data.state.dart';
 import 'package:gogreen/core/states/generateData.state.dart';
-import 'package:gogreen/features/cart/data/model/cart.model.dart';
+import 'package:gogreen/features/cart/data/model/cart_model.dart';
 import 'package:gogreen/features/cart/data/model/cart_product_model.dart';
 import 'package:gogreen/features/cart/data/model/confirm_order_data_model.dart';
 import 'package:gogreen/features/cart/data/model/send_order_model.dart';

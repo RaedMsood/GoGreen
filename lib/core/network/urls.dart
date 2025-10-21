@@ -1,8 +1,6 @@
 class AppURL {
   static String get base => 'https://gogreen.dev-station.com';
 
-//https://tajer-backend.dev-station.com
-  //https://gogreen.dev-station.com
   static String get baseURL => '$base/api/app';
 
   static String get baseImageURL => '$base/api/v1/app/delivery/';
@@ -33,13 +31,20 @@ class AppURL {
 
   static String get resendOtp => '/auth/update_otp';
 
+  static String get updateEmail => '/auth/verify_email';
+
   static String get companies => '/companies';
 
   static String get companyDetail => '/companies/company_details';
 
-  static String get companyReview => '/companies/review';
+
+  static String get addReviewsAndCommentReview => '/companies/review';
 
   static String get getCompanyReviews => '/companies/company_reviews';
+
+  static String get addLike => '/comment/add_like';
+
+  static String get dislike => '/comment/dislike';
 
   static String get productDetail => '/companies/product';
 

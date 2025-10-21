@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gogreen/core/states/data.state.dart';
+import 'package:gogreen/core/states/generateData.state.dart';
 import 'package:gogreen/core/states/paginatedData.state.dart';
 import 'package:gogreen/core/states/view.state.dart';
 import 'package:gogreen/features/home/main/data/model/company_model.dart';
+import 'package:gogreen/features/home/main/data/model/offer_model.dart';
 import 'package:gogreen/features/home/main/data/reposaitories/repos.dart';
 import 'package:gogreen/locator.dart';
 
@@ -12,6 +14,11 @@ abstract class HomeCompaniesFilter {
   static String famous = "most_famous";
   static String rated = "most_rated";
 }
+
+final companiesProvider = StateNotifierProvider<CompaniesRiverpodController,
+    PaginatedData<CompanyModel>>(
+  (ref) => CompaniesRiverpodController(),
+);
 
 class CompaniesRiverpodController
     extends StateNotifier<PaginatedData<CompanyModel>> {
@@ -30,11 +37,12 @@ class CompaniesRiverpodController
   }) async {
     if (state.viewState == ViewState.loadingMore ||
         state.viewState == ViewState.loading) return;
-
-    if (moreData) {
-      state = state.loadingMore();
-    } else {
-      state = state.loading();
+    if (state.viewState != ViewState.failure) {
+      if (moreData) {
+        state = state.loadingMore();
+      } else {
+        state = state.loading();
+      }
     }
 
     int page = state.data.currentPage + 1;
@@ -70,26 +78,54 @@ class CompaniesRiverpodController
   }
 }
 
-final companiesProvider = StateNotifierProvider<CompaniesRiverpodController,
-    PaginatedData<CompanyModel>>(
-  (ref) => CompaniesRiverpodController(),
+// Home Offers Riverpod ////////////////////////////////////////////
+final homeOffersControllerProvider =
+StateNotifierProvider<OffersRiverpodController, GenerateDataState>(
+      (ref) => OffersRiverpodController(),
 );
 
+class OffersRiverpodController
+    extends StateNotifier<GenerateDataState<List<OfferModel>>> {
+  OffersRiverpodController() : super(GenerateDataState.initial([])) {
+    getHomeOffers();
+  }
+
+  final _controller = locator<CompanyRepository>();
+
+  Future<void> getHomeOffers() async {
+    state = state.loading();
+    final offers = await _controller.getHomeOffers();
+
+    if (offers is DataSuccess) {
+      state = state.success(offers.data!);
+    } else {
+      state = state.failure(
+        offers.message,
+        error: offers.error,
+      );
+    }
+  }
+}
+
+
+
+
+// Search Companies Riverpod ////////////////////////////////////////////
 final searchCompaniesProvider = StateNotifierProvider.autoDispose<
     SearchCompaniesRiverpodController, PaginatedData<CompanyModel>>(
-      (ref) => SearchCompaniesRiverpodController(),
+  (ref) => SearchCompaniesRiverpodController(),
 );
+
 class SearchCompaniesRiverpodController
     extends StateNotifier<PaginatedData<CompanyModel>> {
   SearchCompaniesRiverpodController()
       : super(PaginatedData<CompanyModel>.initial(
-      PaginationModel<CompanyModel>.empty())) {
+            PaginationModel<CompanyModel>.empty())) {
     getData();
   }
 
   var searchTextController = TextEditingController();
   String search = '';
-
 
   final _controller = locator<CompanyRepository>();
 

@@ -6,7 +6,7 @@ import 'package:gogreen/features/home/details/data/model/product_detail_model.da
 class CompanyDetailRepository {
   Future<DataState<CompanyDetailModel>> getCompanyDetail({
     required int id,
-    int limit = 20,
+    int limit = 10,
     String search = '',
     int page = 1,
     int? sectionId,

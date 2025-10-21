@@ -13,8 +13,9 @@ import 'package:gogreen/features/user/data/model/auth.model.dart';
 import 'package:gogreen/features/user/data/model/user.model.dart';
 
 final getMyAccountProvider = StateNotifierProvider.autoDispose<
-    GetMyAccountController, GenerateDataState<MyAccountModel>>(
-  (ref) {
+    GetMyAccountController,
+    GenerateDataState<MyAccountModel>>(
+      (ref) {
     return GetMyAccountController();
   },
 );
@@ -23,7 +24,7 @@ class GetMyAccountController
     extends StateNotifier<GenerateDataState<MyAccountModel>> {
   GetMyAccountController()
       : super(
-            GenerateDataState<MyAccountModel>.initial(MyAccountModel.empty())) {
+      GenerateDataState<MyAccountModel>.initial(MyAccountModel.empty())) {
     getProfile();
   }
 
@@ -59,8 +60,9 @@ class GetMyAccountController
 
 /// Update my account and change password riverpod
 final updateMyAccountProvider = StateNotifierProvider.autoDispose<
-    UpdateMyAccountController, GenerateDataState<UserModel>>(
-  (ref) {
+    UpdateMyAccountController,
+    GenerateDataState<UserModel>>(
+      (ref) {
     return UpdateMyAccountController();
   },
 );
@@ -74,10 +76,10 @@ class UpdateMyAccountController
 
   static UpdateStoreFormController storeForm = UpdateStoreFormController();
   static UpdatePersonalFormController personalForm =
-      UpdatePersonalFormController();
+  UpdatePersonalFormController();
 
   final ChangePasswordFormController changePasswordForm =
-      ChangePasswordFormController();
+  ChangePasswordFormController();
 
   bool isValid() {
     storeForm.group.markAllAsTouched();
@@ -86,10 +88,10 @@ class UpdateMyAccountController
     return storeForm.group.valid && personalForm.group.valid;
   }
 
-  Future<void> updateMyAccount(
-    BuildContext context, {
+  Future<void> updateMyAccount(BuildContext context, {
     required double lat,
     required double lng,
+    required Function onSuccess,
   }) async {
     if (!isValid()) return;
     state = state.loading();
@@ -111,8 +113,8 @@ class UpdateMyAccountController
 
     if (data is DataSuccess) {
       Auth().login(AuthModel(token: Auth().token, user: data.data!));
-      Navigator.of(context).pop();
-      _successFlashBar('Updated Successfully', context);
+      onSuccess();
+
       state = state.success(data.data!);
     } else {
       _errorFlashBar(data.message, data.error!.desc.toString(),
@@ -122,7 +124,9 @@ class UpdateMyAccountController
   }
 
   //changePassword
-  Future<void> changePassword(BuildContext context) async {
+  Future<void> changePassword(BuildContext context, {
+    required Function onSuccess,
+  }) async {
     changePasswordForm.group.markAllAsTouched();
     if (!changePasswordForm.group.valid) return;
     state = state.loading();
@@ -134,8 +138,8 @@ class UpdateMyAccountController
     );
 
     if (data is DataSuccess) {
-      Navigator.of(context).pop();
-      _successFlashBar('Password changed successfully', context);
+      await Auth().logout();
+      onSuccess();
 
       state = state.success(state.data);
     } else {
@@ -158,5 +162,43 @@ class UpdateMyAccountController
       message: message,
       context: context,
     );
+  }
+}
+
+/// Update Email Riverpod /////////////////////////////////////////////
+final updateEmailProvider = StateNotifierProvider.autoDispose<
+    UpdateEmailController,
+    GenerateDataState<bool>>(
+      (ref) {
+    return UpdateEmailController();
+  },
+);
+
+class UpdateEmailController extends StateNotifier<GenerateDataState<bool>> {
+  UpdateEmailController() : super(GenerateDataState<bool>.initial(false));
+  final _controller = MyAccountRepository();
+
+  Future<void> updateEmail(BuildContext context, {
+    required String oldEmail,
+    required String newEmail,
+    required Function onSuccess,
+  }) async {
+    state = state.loading();
+    final data = await _controller.updateEmail(
+      oldEmail: oldEmail,
+      newEmail: newEmail,
+    );
+
+    if (data is DataSuccess) {
+      onSuccess();
+      state = state.success(true);
+    } else {
+      showFlashBarError(
+        message: "${data.message} ${data.error!.desc.toString()}",
+        context: context,
+      );
+
+      state = state.failure(data.message, error: data.error);
+    }
   }
 }

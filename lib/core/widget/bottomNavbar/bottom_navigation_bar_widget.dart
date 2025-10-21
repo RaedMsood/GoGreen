@@ -8,7 +8,7 @@ import 'package:gogreen/core/widget/bottomNavbar/design_for_bottom_navigation_ba
 import 'package:gogreen/core/helpers/navigateTo.dart';
 import 'package:gogreen/features/cart/presentation/pages/cart_page.dart';
 import 'package:gogreen/features/home/main/presentation/page/home_page.dart';
-import 'package:gogreen/features/my_orders/orders/presentation/pages/my_order_page.dart';
+import 'package:gogreen/features/orders/presentation/pages/my_order_page.dart';
 import 'package:gogreen/features/profiles/profile/presentation/pages/profile_page.dart';
 
 var activeIndexProvider = StateProvider<int>((ref) => 0);
@@ -29,9 +29,9 @@ class _BottomNavigationBarWidgetState
       textDirection: Directionality.of(context),
       child: Scaffold(
         body: [
-          ExitFromAppWidget(child: const HomePage()),
-          ExitFromAppWidget(child: const MyOrderPage()),
-          ExitFromAppWidget(child: const ProfilePage()),
+          const ExitFromAppWidget(child:  HomePage()),
+          const ExitFromAppWidget(child:  MyOrderPage()),
+          const ExitFromAppWidget(child:  ProfilePage()),
         ][activeIndex],
         bottomNavigationBar: Container(
           decoration: BoxDecoration(

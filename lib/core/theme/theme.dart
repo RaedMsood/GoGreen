@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gogreen/Core/theme/app_colors.dart';
 
-const primary = Color(0xff1c5948);
-const secondary = Color(0xfff8f8f8);
-const fontColor = Color(0xff616161);
+
 ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   primarySwatch: AppColors.primarySwatch,

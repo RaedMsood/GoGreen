@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gogreen/core/states/error.state.dart';
 import 'package:gogreen/core/states/ui.state.dart';
 import 'package:gogreen/core/states/view.state.dart';
+import 'package:gogreen/core/theme/app_colors.dart';
 import 'package:gogreen/core/widget/appbar_widget.dart';
 import 'package:gogreen/core/widget/loading_widget.dart';
 import 'package:gogreen/features/home/notifications/presentation/riverpod/notifications_riverpod.dart';
@@ -11,7 +12,7 @@ import 'package:gogreen/features/home/notifications/presentation/widgets/notific
 import 'package:gogreen/features/home/notifications/presentation/widgets/notification_shimmer_card_widget.dart';
 
 class NotificationsPage extends ConsumerStatefulWidget {
-  const NotificationsPage({Key? key}) : super(key: key);
+  const NotificationsPage({super.key});
 
   @override
   ConsumerState createState() => _NotificationsPageState();
@@ -53,6 +54,7 @@ class _NotificationsPageState extends ConsumerState<NotificationsPage> {
         titleFontSize: 17.sp,
       ),
       body: RefreshIndicator(
+        color: AppColors.primaryColor,
         onRefresh: () async {
           ref.refresh(notificationsProvider);
         },

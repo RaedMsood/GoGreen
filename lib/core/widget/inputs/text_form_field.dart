@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gogreen/core/theme/theme.dart';
+import 'package:gogreen/core/theme/app_colors.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController controller;
@@ -26,7 +26,7 @@ class TextFormFieldWidget extends StatelessWidget {
   final int? maxLine;
 
   const TextFormFieldWidget({
-    Key? key,
+    super.key,
     required this.controller,
     required this.type,
     this.fillColor,
@@ -48,7 +48,7 @@ class TextFormFieldWidget extends StatelessWidget {
     this.onTap,
     this.onChanged,
     this.onSubmit,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class TextFormFieldWidget extends StatelessWidget {
       onFieldSubmitted: onSubmit,
       onTap: onTap,
       onChanged: onChanged,
-      cursorColor: primary,
+      cursorColor: AppColors.primaryColor,
       decoration: InputDecoration(
         fillColor: fillColor ?? Colors.white,
         filled: true,

@@ -106,4 +106,36 @@ class MyAccountRepository {
       },
     );
   }
+
+  Future<DataState<bool>> updateEmail({
+    required String oldEmail,
+    required String newEmail,
+
+  }) async {
+    return await WingsRemoteService().send(
+      request: WingsRequest(
+        url: AppURL.updateEmail,
+        body: {
+          "old_email": oldEmail,
+          "new_email": newEmail,
+        },
+      ),
+      method: WingsRemoteMethod.post,
+      onSuccess: (response, code) {
+        return DataSuccess<bool>(
+          true,
+        );
+      },
+      onError: (response, code) {
+        return DataError<bool>(
+          message: response.message,
+          code: response.code,
+          error: ErrorModel.fromCode(
+            response.code,
+            response.statusCode,
+          ),
+        );
+      },
+    );
+  }
 }

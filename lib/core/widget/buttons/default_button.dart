@@ -21,7 +21,7 @@ class DefaultButtonWidget extends StatelessWidget {
   bool? isLoading;
 
   DefaultButtonWidget({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     this.background,
@@ -35,7 +35,7 @@ class DefaultButtonWidget extends StatelessWidget {
     this.minFontSize,
     this.gradient = true,
     this.isLoading,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

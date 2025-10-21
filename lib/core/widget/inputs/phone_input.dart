@@ -8,13 +8,13 @@ import 'base_input.dart';
 
 class PhoneInputWidget extends StatelessWidget {
   const PhoneInputWidget({
-    Key? key,
+    super.key,
     required this.formControlName,
     required this.hintText,
     this.onSubmitted,
     this.margin,
     this.max = 9,
-  }) : super(key: key);
+  });
   final String formControlName;
   final String hintText;
 

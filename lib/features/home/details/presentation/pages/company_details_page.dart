@@ -18,10 +18,17 @@ import 'package:gogreen/features/home/details/presentation/widgets/view_cart_but
 
 class CompanyDetailsPage extends ConsumerStatefulWidget {
   final int id;
+  final String companyImage;
   final String companyName;
+  final String companyAddress;
 
-  const CompanyDetailsPage(
-      {super.key, required this.id, required this.companyName});
+  const CompanyDetailsPage({
+    super.key,
+    required this.id,
+    required this.companyImage,
+    required this.companyName,
+    required this.companyAddress,
+  });
 
   @override
   ConsumerState<CompanyDetailsPage> createState() => _CompanyDetailsPageState();
@@ -41,8 +48,8 @@ class _CompanyDetailsPageState extends ConsumerState<CompanyDetailsPage> {
         _scrollController.position.maxScrollExtent) {
       //call getData from the provider
       ref.read(companyDetailProvider(widget.id).notifier).getData(
-        moreData: true,
-      );
+            moreData: true,
+          );
     }
   }
 
@@ -68,16 +75,17 @@ class _CompanyDetailsPageState extends ConsumerState<CompanyDetailsPage> {
         body: CustomScrollView(
           controller: _scrollController,
           slivers: [
-
             /// If the search value is empty the search box is displayed with the offers. If it is not empty, only the search box is displayed.
             if (provider.searchController.text.isEmpty)
               SliverPersistentHeader(
                 pinned: true,
                 floating: false,
                 delegate:
-                SearchForAProductAndViewOffersForTheCompanyDetailsAppBarSliverWidget(
+                    SearchForAProductAndViewOffersForTheCompanyDetailsAppBarSliverWidget(
                   id: widget.id,
-                  title: widget.companyName.toString(),
+                  companyImage: widget.companyImage,
+                  companyName: widget.companyName.toString(),
+                  companyAddress: widget.companyAddress,
                   expandedHeight: 290.h,
                   controller: provider,
                   scrollController: _scrollController,
@@ -88,19 +96,22 @@ class _CompanyDetailsPageState extends ConsumerState<CompanyDetailsPage> {
                 pinned: true,
                 floating: false,
                 delegate:
-                SearchForAProductForTheCompanyDetailsAppBarSliverWidget(
+                    SearchForAProductForTheCompanyDetailsAppBarSliverWidget(
                   id: widget.id,
+                  companyImage: widget.companyImage,
                   companyName: widget.companyName.toString(),
+                  companyAddress: widget.companyAddress,
                   controller: provider,
                 ),
               ),
-            SliverPersistentHeader(
+
+              SliverPersistentHeader(
               pinned: true,
               floating: false,
               delegate: CategoriesWidget(
                   id: widget.id,
                   height:
-                  provider.filteredCategories.isNotEmpty ? 140.h : 89.h),
+                      provider.filteredCategories.isNotEmpty ? 140.h : 89.h),
             ),
             if (controller.data.products.data.isEmpty &&
                 controller.viewState == ViewState.loadingMore)
@@ -120,6 +131,7 @@ class _CompanyDetailsPageState extends ConsumerState<CompanyDetailsPage> {
                 id: widget.id,
               ),
             ),
+
             if (controller.data.products.data.isNotEmpty &&
                 controller.viewState == ViewState.loadingMore)
               const SliverToBoxAdapter(

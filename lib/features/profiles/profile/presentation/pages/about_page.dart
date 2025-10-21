@@ -6,7 +6,6 @@ import 'package:gogreen/core/constants/app_icons.dart';
 import 'package:gogreen/core/states/error.state.dart';
 import 'package:gogreen/core/states/ui.state.dart';
 import 'package:gogreen/core/theme/app_colors.dart';
-import 'package:gogreen/core/theme/dimensions.dart';
 import 'package:gogreen/core/theme/text_style.dart';
 import 'package:gogreen/core/widget/appbar_widget.dart';
 import 'package:gogreen/core/widget/loading_widget.dart';
@@ -37,7 +36,7 @@ class AboutPage extends ConsumerWidget {
         ),
         child: SingleChildScrollView(
           padding:
-              EdgeInsets.symmetric(horizontal: AppDimensions.horizontalPadding),
+              EdgeInsets.symmetric(horizontal: 18.w),
           child: Column(children: [
             SizedBox(height: 16.h),
             if (title == 'About the app') _aboutPage(controller),

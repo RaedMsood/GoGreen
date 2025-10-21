@@ -12,8 +12,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 
 class RegisterPersonalPage extends ConsumerWidget {
   const RegisterPersonalPage({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

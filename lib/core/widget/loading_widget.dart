@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gogreen/core/theme/app_colors.dart';
 
 class CircularProgressIndicatorWidget extends StatelessWidget {
-  const CircularProgressIndicatorWidget({Key? key}) : super(key: key);
+  const CircularProgressIndicatorWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

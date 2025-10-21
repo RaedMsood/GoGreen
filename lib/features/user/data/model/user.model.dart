@@ -3,6 +3,7 @@ class UserModel {
   final String name;
   final String phoneNumber;
   final String email;
+  final String fcmToken;
   final StoreAddressModel storeAddress;
 
   UserModel({
@@ -11,6 +12,7 @@ class UserModel {
     required this.phoneNumber,
     required this.email,
     required this.storeAddress,
+    required this.fcmToken,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class UserModel {
       name: json['name'] ?? "",
       email: json['email'] ?? "",
       phoneNumber: json['phone_number'] ?? "",
+      fcmToken: json['fcmToken']??'',
       storeAddress: StoreAddressModel.fromJson(json['customer'] ?? json),
     );
   }
@@ -29,15 +32,29 @@ class UserModel {
       'name': name,
       'email': email,
       'phone_number': phoneNumber,
+      'fcmToken':fcmToken,
       'store_address': storeAddress.storeAddress,
     };
   }
 
+  UserModel copyWith({
+    required String fcmToken,
+  }) {
+    return UserModel(
+      id: id,
+      name: name,
+      email: email,
+      phoneNumber: phoneNumber,
+      fcmToken: fcmToken ,
+      storeAddress: storeAddress,
+    );
+  }
   factory UserModel.empty() => UserModel(
         id: 0,
         name: '',
         email: '',
         phoneNumber: '',
+        fcmToken: '',
         storeAddress: StoreAddressModel.empty(),
       );
 }

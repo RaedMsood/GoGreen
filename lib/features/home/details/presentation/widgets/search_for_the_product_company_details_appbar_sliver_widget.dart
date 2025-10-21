@@ -4,20 +4,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gogreen/core/constants/app_icons.dart';
 import 'package:gogreen/core/theme/app_colors.dart';
-import 'package:gogreen/core/widget/appbar_sliver_widget.dart';
 import 'package:gogreen/core/widget/inputs/text_form_field.dart';
 import 'package:gogreen/features/home/details/presentation/riverpod/company_detail_riverpod.dart';
+import 'appbar_company_details.dart';
 
 class SearchForAProductForTheCompanyDetailsAppBarSliverWidget
     extends SliverPersistentHeaderDelegate {
   final int id;
+  final String companyImage;
   final String companyName;
-
+  final String companyAddress;
   final CompanyDetailController controller;
 
   SearchForAProductForTheCompanyDetailsAppBarSliverWidget({
     required this.id,
+    required this.companyImage,
     required this.companyName,
+    required this.companyAddress,
     required this.controller,
   });
 
@@ -31,8 +34,13 @@ class SearchForAProductForTheCompanyDetailsAppBarSliverWidget
         return CustomScrollView(
           physics: const NeverScrollableScrollPhysics(),
           slivers: [
-            appBarSliverWidget(
+            appBarCompanyDetailsWidget(
               title: companyName,
+              companyId: id,
+              companyImage: companyImage,
+              companyName: companyName,
+              companyAddress: companyAddress,
+              context: context,
               expandedHeight: 140.h,
               child: AnimatedContainer(
                 margin: EdgeInsets.all(14.sp),

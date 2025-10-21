@@ -28,6 +28,7 @@ class ShowNotificationDesignWidget{
           summary: summary,
           payload: payload,
           bigPicture: bigPicture,
+
         ),
         schedule: scheduled
             ? NotificationInterval(

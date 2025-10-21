@@ -9,12 +9,12 @@ import 'base_input.dart';
 
 class PasswordInputWidget extends StatefulWidget {
   const PasswordInputWidget({
-    Key? key,
+    super.key,
     required this.formControlName,
     required this.hintText,
     this.onSubmitted,
     this.margin,
-  }) : super(key: key);
+  });
   final String formControlName;
   final String hintText;
   final EdgeInsets? margin;

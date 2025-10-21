@@ -51,7 +51,7 @@ class OrderSuccessDialogWidget extends ConsumerWidget {
           8.h.verticalSpace,
           AutoSizeTextWidget(
             text:
-                "Your order has been successful placed. Thank you for shopping with us.",
+            "Your order has been successful placed. Thank you for shopping with us.",
             fontSize: 12.sp,
             colorText: AppColors.greySwatch.shade600,
             maxLines: 3,
@@ -64,7 +64,9 @@ class OrderSuccessDialogWidget extends ConsumerWidget {
             height: 38.h,
             textSize: 11.4.sp,
             onPressed: () {
-              ref.read(activeIndexProvider.notifier).state = 0;
+              ref
+                  .read(activeIndexProvider.notifier)
+                  .state = 0;
               navigateAndFinish(context, const BottomNavigationBarWidget());
             },
           ),

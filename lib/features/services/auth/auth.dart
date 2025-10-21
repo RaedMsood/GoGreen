@@ -43,11 +43,11 @@ class Auth {
 
   AuthModel user = AuthModel.empty();
 
-  int get id => user.user.id;
-
   bool get loggedIn => user.token.isNotEmpty;
 
   String get token => user.token;
+
+  String get email => user.user.email;
 
   String get storeAddress => user.user.storeAddress.storeAddress;
 
@@ -83,22 +83,26 @@ class Auth {
     user = AuthModel.empty();
     await secureStorage.delete(key: _key);
   }
+
   void updateFcmToken(String fcmToken) async {
     log(fcmToken, name: 'token');
     //save fcmtoken
 
-    if (loggedIn ) {
-
+    secureStorage.write(key: 'fcmToken', value: fcmToken);
+    if (loggedIn && user.user.fcmToken != fcmToken) {
+      user = user.copyWith(
+        user: user.user.copyWith(
+          fcmToken: fcmToken,
+        ),
+      );
       await WingsRemoteService().send(
         request: WingsRequest(
           url: AppURL.addFcmToken,
           body: {'fcmToken': fcmToken},
         ),
         method: WingsRemoteMethod.post,
-        onSuccess: (response, code) {
-          print("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
-        },
-        onError: (response, code) {},
+        onSuccess: (response, code) {},
+        onError: (RemoteResponse, int) {},
       );
     }
   }

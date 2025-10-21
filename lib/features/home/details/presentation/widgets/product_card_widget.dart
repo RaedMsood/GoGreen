@@ -85,7 +85,7 @@ class ProductCardWidget extends ConsumerWidget {
                 increment: false,
               );
           if (quantity == 1) {
-            showFlashBarError(
+            showFlashBarSuccess(
               message: 'Deleted successfully',
               context: context,
             );

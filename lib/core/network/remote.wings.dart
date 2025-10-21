@@ -40,8 +40,6 @@ class WingsRemoteService {
     List<int> successStates = const [200, 201, 202],
     required Function(RemoteResponse, int) onSuccess,
     required Function(RemoteResponse, int) onError,
-    // Function(int, int)? onSendProgress,
-    // Function(int, int)? onReceiveProgress,
   }) async {
     int errorStatusCode = 500;
     RemoteResponse _remoteResponse = RemoteResponse(
@@ -94,7 +92,8 @@ class WingsRemoteService {
         );
         return onError(_remoteResponse, statusCode);
       }
-    }  catch (exception) {
+    } catch (exception) {
+      // throw '$exception';
       return onError(_remoteResponse, errorStatusCode);
     }
   }

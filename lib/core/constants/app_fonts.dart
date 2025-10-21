@@ -1,3 +1,3 @@
 class AppFonts {
-  static const String fontFamily = 'Almarai';
+  static const String fontFamily = 'PlusJakartaSans';
 }

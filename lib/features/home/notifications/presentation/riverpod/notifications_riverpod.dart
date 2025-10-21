@@ -76,10 +76,8 @@ class UpdateFcmTokenController extends StateNotifier<GenerateDataState<bool>> {
         fcmToken: fcmToken,
       );
       if (data is DataSuccess) {
-        print("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
         state = state.success(true);
       } else {
-        print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOoo");
         state = state.failure(data.message);
       }
     }

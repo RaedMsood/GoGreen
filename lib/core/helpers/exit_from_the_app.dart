@@ -3,7 +3,7 @@ import 'flash_bar_helper.dart';
 
 class ExitFromAppWidget extends StatefulWidget {
 
-  ExitFromAppWidget({super.key, required this.child});
+  const ExitFromAppWidget({super.key, required this.child});
   final Widget child;
 
   @override

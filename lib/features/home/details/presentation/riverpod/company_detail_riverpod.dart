@@ -1,3 +1,4 @@
+
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -62,6 +63,7 @@ class CompanyDetailController
       sectionId: sectionId > 0 ? sectionId : null,
       categoryIds: categories.isNotEmpty ? categories : null,
       search: searchController.text,
+
     );
 
     if (data is DataSuccess) {

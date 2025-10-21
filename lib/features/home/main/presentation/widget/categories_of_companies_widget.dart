@@ -24,13 +24,12 @@ class CategoriesOfCompanyWidget extends SliverPersistentHeaderDelegate {
           child: UIState(
             state: controller.viewState,
             loadingState: const CategoriesShimmerWidget(),
-           // errorState: SizedBox(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: EdgeInsets.all(14.sp),
-                  child: AutoSizeTextWidget(
+                  child: const AutoSizeTextWidget(
                     text: "Categories",
                   ),
                 ),

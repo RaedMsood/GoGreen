@@ -35,7 +35,7 @@ class BaseInputWidget extends StatelessWidget {
   final int? maxLine;
 
   const BaseInputWidget({
-    Key? key,
+    super.key,
     required this.formControlName,
     this.inputFormatters,
     this.validationMessages,
@@ -63,7 +63,7 @@ class BaseInputWidget extends StatelessWidget {
     this.cursorHeight,
     this.maxLines = 1,
 
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

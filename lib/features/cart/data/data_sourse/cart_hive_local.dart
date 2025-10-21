@@ -1,4 +1,4 @@
-import 'package:gogreen/features/cart/data/model/cart.model.dart';
+import 'package:gogreen/features/cart/data/model/cart_model.dart';
 import 'package:gogreen/features/cart/data/model/cart_product_model.dart';
 import 'package:gogreen/features/home/main/data/model/company_model.dart';
 import 'package:hive/hive.dart';

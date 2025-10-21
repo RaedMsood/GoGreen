@@ -7,7 +7,7 @@ import 'package:gogreen/core/widget/auto_size_text_widget.dart';
 import 'package:gogreen/core/widget/buttons/default_button.dart';
 import 'package:gogreen/core/helpers/navigateTo.dart';
 import 'package:gogreen/core/widget/show_modal_bottom_sheet_widget.dart';
-import 'package:gogreen/features/my_orders/orders/presentation/pages/my_order_page.dart';
+import 'package:gogreen/features/orders/presentation/pages/my_order_page.dart';
 import 'package:gogreen/features/profiles/my_account/presentation/pages/update_my_account_page.dart';
 import 'package:gogreen/features/profiles/profile/presentation/widgets/list_tile_profile_widget.dart';
 import 'package:gogreen/features/services/auth/auth.dart';

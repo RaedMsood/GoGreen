@@ -80,7 +80,7 @@ String dayHour(String date) {
   if (date.isEmpty) return '';
 
   try {
-    return '${todayYesterdayOrDayOfWeek(date)}، ${DateFormat('hh:mm').format(localDateTime(date))} ${amPm(date)}';
+    return '${todayYesterdayOrDayOfWeek(date)}، ${DateFormat('hh:mm').format(dateTime(date))} ${amPm(date)}';
   } catch (ex) {
     return date;
   }
@@ -104,8 +104,8 @@ String dayDate(String date) {
   }
 }
 
-DateTime localDateTime(String date) {
-  return DateFormat('yyyy-MM-dd HH:mm:ss').parse(date, true).toLocal();
+DateTime dateTime(String date) {
+  return DateFormat('yyyy-MM-dd HH:mm:ss').parse(date);
 }
 
 String todayYesterdayOrDayOfWeek(String date) {

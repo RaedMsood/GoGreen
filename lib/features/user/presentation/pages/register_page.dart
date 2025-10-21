@@ -12,10 +12,9 @@ import 'package:gogreen/features/user/presentation/pages/verify_page.dart';
 import 'package:gogreen/features/user/presentation/widgets/personal_register_widget.dart';
 import 'package:gogreen/features/user/presentation/widgets/store_register_widget.dart';
 import 'package:gogreen/features/user/presentation/riverpod/riverpod.dart';
-import 'package:gogreen/features/user/presentation/widgets/user_is_not_activated_dialog_widget.dart';
 
 class RegisterPage extends ConsumerWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context, ref) {
@@ -45,12 +44,12 @@ class RegisterPage extends ConsumerWidget {
                 fontSize: 12.5.sp,
                 fontWeight: FontWeight.w600,
               ),
-              RegisterPersonalPage(),
+               const RegisterPersonalPage(),
               AutoSizeTextWidget(
                 text: "Store data",
                 fontSize: 12.5.sp,
               ),
-              RegisterStorePage(),
+               const RegisterStorePage(),
               18.h.verticalSpace,
               DefaultButtonWidget(
                 text: "Sign up",
@@ -60,15 +59,21 @@ class RegisterPage extends ConsumerWidget {
                   if (isValid) {
                     if (ref.read(mapProvider.notifier).locationIsEmpty ==
                         false) {
-                      // ref.read(registerProvider.notifier).register(context,
-                      //     lat: mapController.location.latitude,
-                      //     lng: mapController.location.longitude, onSuccess: () {
-                      //       navigateTo(context, VerifyPage());
-                      //     },
-                      //     );
+
                       ref.read(registerProvider.notifier).sendOTP(context,
                           onSuccess: () {
-                            navigateTo(context, VerifyPage());
+                        navigateTo(
+                          context,
+                          VerifyPage(),
+                        );
+                      }, resendOTP: () {
+                        ref.read(resendOtpProvider.notifier).resendOtp(context,
+                            onSuccess: () {
+                          navigateTo(
+                            context,
+                            VerifyPage(),
+                          );
+                        });
                       });
                     }
                   }

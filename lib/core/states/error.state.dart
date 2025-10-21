@@ -43,7 +43,7 @@ class ErrorState extends StatelessWidget {
     );
   }
 
-  //and another build method for the error state emty
+  //and another build method for the error state
 
   static container(
       {required ErrorModel error,

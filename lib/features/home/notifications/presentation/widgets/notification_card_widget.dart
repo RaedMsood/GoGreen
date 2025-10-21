@@ -6,7 +6,7 @@ import 'package:gogreen/core/widget/auto_size_text_widget.dart';
 import 'package:gogreen/core/helpers/navigateTo.dart';
 import 'package:gogreen/core/widget/online_images_widget.dart';
 import 'package:gogreen/features/home/notifications/data/model/model.dart';
-import 'package:gogreen/features/my_orders/orders/presentation/pages/order_details_page.dart';
+import 'package:gogreen/features/orders/presentation/pages/order_details_page.dart';
 
 class NotificationCardWidget extends StatelessWidget {
   final NotificationModel notification;

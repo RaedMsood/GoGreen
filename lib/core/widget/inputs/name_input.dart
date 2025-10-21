@@ -16,14 +16,14 @@ class NameInputWidget extends StatelessWidget {
   final TextInputType? keyboardType;
 
   const NameInputWidget({
-    Key? key,
+    super.key,
     required this.formControlName,
     required this.hintText,
     required this.validation,
     this.icon,
     this.onSubmitted,
     this.keyboardType,
-  }) : super(key: key);
+  });
 
   final Function(FormControl<Object?>)? onSubmitted;
 

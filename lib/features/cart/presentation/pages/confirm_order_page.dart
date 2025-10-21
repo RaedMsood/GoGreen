@@ -6,6 +6,7 @@ import 'package:gogreen/core/states/error.state.dart';
 import 'package:gogreen/core/states/ui.state.dart';
 import 'package:gogreen/core/states/view.state.dart';
 import 'package:gogreen/core/widget/appbar_sliver_persistent_header_widget.dart';
+import 'package:gogreen/core/widget/appbar_widget.dart';
 import 'package:gogreen/core/widget/auto_size_text_widget.dart';
 import 'package:gogreen/core/widget/bottomNavbar/bottom_navigation_bar_widget.dart';
 import 'package:gogreen/core/widget/inputs/text_form_field.dart';
@@ -34,34 +35,37 @@ class ConfirmOrderPage extends ConsumerWidget {
     var cartController = ref.watch(cartProvider);
 
     return Scaffold(
-      body: ReactiveFormBuilder(
-        form: () => CartRiverpodController.orderFormController.group,
-        builder: (context, form, child) {
-          return CustomScrollView(
-            slivers: [
-              SliverPersistentHeader(
-                pinned: true,
-                floating: false,
-                delegate: AppbarSliverPersistentHeaderWidget(
-                  title: "Confirm Order",
-                  expandedHeight: 270.h,
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 80.h),
-                    child: const DeliveryInformationWidget(),
+      appBar: controller.viewState == ViewState.failure
+          ? AppBarWidget(title: "Confirm Order")
+          : null,
+      body: UIState(
+        state: controller.viewState,
+        loadingState: const ShimmerToConfirmOrderWidget(),
+        errorState: Center(
+          child: ErrorState.container(
+            error: controller.errorModel,
+          ),
+        ),
+        child: ReactiveFormBuilder(
+          form: () => CartRiverpodController.orderFormController.group,
+          builder: (context, form, child) {
+            return CustomScrollView(
+              slivers: [
+                SliverPersistentHeader(
+                  pinned: true,
+                  floating: false,
+                  delegate: AppbarSliverPersistentHeaderWidget(
+                    title: "Confirm Order",
+                    expandedHeight: 270.h,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 80.h),
+                      child: const DeliveryInformationWidget(),
+                    ),
                   ),
                 ),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.all(14.sp),
-                  child: UIState(
-                    state: controller.viewState,
-                    loadingState: const ShimmerToConfirmOrderWidget(),
-                    errorState: Center(
-                      child: ErrorState.container(
-                        error: controller.errorModel,
-                      ),
-                    ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.all(14.sp),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -117,10 +121,10 @@ class ConfirmOrderPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-              ),
-            ],
-          );
-        },
+              ],
+            );
+          },
+        ),
       ),
       bottomNavigationBar: UIState(
         state: controller.viewState,
