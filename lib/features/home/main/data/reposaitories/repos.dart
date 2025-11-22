@@ -20,6 +20,7 @@ class CompanyRepository {
           'filter': filter,
           'search': search,
         },
+
       ),
       method: WingsRemoteMethod.get,
       onSuccess: (response, code) {

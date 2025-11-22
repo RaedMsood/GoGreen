@@ -30,13 +30,14 @@ class ShowNotificationDesignWidget{
           bigPicture: bigPicture,
 
         ),
-        schedule: scheduled
-            ? NotificationInterval(
-          interval: interval!,
-          timeZone:
-          await AwesomeNotifications().getLocalTimeZoneIdentifier(),
-          preciseAlarm: true,
-        )
-            : null);
+        // schedule: scheduled
+        //     ? NotificationInterval(
+        //   interval: interval!,
+        //   timeZone:
+        //   await AwesomeNotifications().getLocalTimeZoneIdentifier(),
+        //   preciseAlarm: true,
+        // )
+        //     : null
+    );
   }
 }

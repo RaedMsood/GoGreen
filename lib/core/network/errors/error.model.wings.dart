@@ -34,6 +34,7 @@ class ErrorModel {
     wingsLogger.logError(
         "ErrorModel.fromCode: code: $code, statusCode: $statusCode, message: $message, desc: $desc");
 
+
     if (ErrorEnum.errorCodes.contains(code)) {
       var tempDesc;
       if (desc != null) {

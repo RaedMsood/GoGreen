@@ -59,9 +59,13 @@ class WingsRemoteService {
     wingsLogger.logInfo('Request: ${request.urlQueryString}');
     wingsLogger.logInfo('Request Body: ${request.body}');
     try {
+      final body = request.body;
+
+      final bool hasBody = body != null && body is Map && body.isNotEmpty;
+
       Response<dynamic> response = await dio.request(
         request.urlQueryString,
-        data: request.body,
+        data: hasBody ? body : null,
         options: Options(
           method: method.name,
           headers: {
@@ -93,7 +97,6 @@ class WingsRemoteService {
         return onError(_remoteResponse, statusCode);
       }
     } catch (exception) {
-      // throw '$exception';
       return onError(_remoteResponse, errorStatusCode);
     }
   }
